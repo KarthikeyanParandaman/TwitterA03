@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Profile information</title>
+<style>
+fieldset {
+  padding:10px;
+  width:250px;
+  margin:auto;}
+  </style>
+</head>
+<body>
+  <h1 align="center">Twitter Profiles</h1>
+{% for i in query %}
+
+<form method='post' action='/profile/{{ i.users }}' >
+  <fieldset>
+<legend><h3 align="center">Profile Name : <i>{{ i.users }}</i></h3></legend>
+<p ><h4 align="center"><b>About me : </b><i>{{ i.about }}</i></h4></p>
+ &nbsp; &nbsp; &nbsp; &nbsp;<input type='submit' name='button' value='FOLLOW'/> &nbsp; &nbsp;
+ <input type='submit' name='button' value='UNFOLLOW'/>
+
+<h4 align="center">{{ i.users }} Tweets:</h4>
+<p align="center">
+{% for a in list %}
+<b>Tweet : </b>{{ a }}<br/>
+{% endfor %}
+</p>
+{% endfor %}
+</fieldset>
+    </form>
+<br/><p align="center"><a href='/'>HOME</a></p>
+</body>
+</html>

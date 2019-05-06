@@ -1,0 +1,20 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Edit User Tweets</title>
+</head>
+<body>
+<h1 align="center">Profile Name : <i>{{ model.users }}</i></h1>
+<p ><h3 align="center"><b><i>Edit your tweets below</i></b></h3></p><h3 align="center">Tweets:</h3><br/>
+{% for i in list %}
+<form method="post" action="/deletedit/{{ model.users }}" align="center">
+Tweet :
+<input type="text" name="users_name" value="{{ i }}"/>
+<input type="hidden" value="{{ loop.index }}" name="index"/>
+<input type="submit" value="Submit" name="button"/>&nbsp;&nbsp;&nbsp;
+<input type="submit" name="button" value="Delete"/></form>
+<br/>
+{% endfor %}
+<br/><p align="center"><a href='/'>HOME</a></p>
+</body>
+</html>

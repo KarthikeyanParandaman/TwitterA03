@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>User login/logout with datastore</title>
+</head>
+<body>
+
+{% if user %}
+<h1 align="center">Profile Name : <i>{{ model.users }}</i></h1><h4 align="center">Click <a href="/edit">here</a>  to edit your profile</h4>
+<p ><h4 align="center"><b>About me : </b><i>{{ model.about }}</i></h4></p>
+<h3 align="center">Followers: {{ followers }} &nbsp;&nbsp;&nbsp;&nbsp;
+Following: {{ following }}<h3>
+<h4 align="center">Click <a href="/deletedit/{{ model.users }}">here</a>  to edit your tweets</h4>
+<form method='post' action='/edit' align="center">
+<h4>Post your tweet:&nbsp;&nbsp;<input type='text' name='tweet' required='True' maxlength="280"/>
+<input type='submit' name='button' value='Submit'/></h4>
+</form>
+<form action="{{ upload_url }}" method="post" enctype="multipart/form-data" align="center">
+<h4>Attach image to your tweets:&nbsp;&nbsp;&nbsp;<input type="file" name="tweet" />
+<input type='submit' name='button' value='Submit'/></h4></form>
+
+<form method='get' action='/' align="center">
+<h4>Search User:&nbsp;&nbsp;<input type='text' name='usersearch'/>
+<input type='submit' name='button' value='Search'/></h4>
+</form>
+<p align="center">
+{% if quer1==1 %}
+<a href="/profile/{{ fuser }}">{{ fuser }}</a>
+{% else %}
+{% endif %}</p>
+
+<form method='get' action='/' align="center">
+  <h4>Search tweets:
+<input type='text' name='tweetsearch'/>
+<input type='submit' name='button' value='Tweet Search'/></h4>
+</form>
+
+<h4 align="center">Searched Tweets:</h4><br/>
+<p align="center">
+{% if query2>0 %}
+{% for i in ftweet %}
+{{ i }}<br/>
+{% endfor %}</p>
+
+{% else %}
+{% endif %}
+<h3 align="center">Tweets:</h3>
+<p align="center">
+{% for i in usertweets %}
+<br/>
+{{ i }}
+<!-- <img src="/download?index={{ loop.index - 1 }}" width="200" height="150"></img> -->
+{% endfor %}</p>
+{% else %}
+<br>
+</br>
+<h1 align="center"><b><i>Twitter</i></b></h1>
+{% endif %}
+<br></br>
+<h3><p align="center">you can {{ url_string }} <a href='{{ url }}'>here</a></p><h3>
+</body>
+</html>
